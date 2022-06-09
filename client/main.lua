@@ -13,8 +13,8 @@ local tricks = {
 }
 
 Citizen.CreateThread(function()
-    while true do
-	    local sleep = 1000
+	while true do
+		local sleep = 1000
 		if IsPedInAnyVehicle(PlayerPedId()) then
 			if not vehicle then
 				for k, v in pairs(Config.Bikes) do
@@ -28,7 +28,7 @@ Citizen.CreateThread(function()
 				local bike = GetVehiclePedIsIn(PlayerPedId())
 
 				if Config.KMH then
-				    speed = GetEntitySpeed(bike) * 3.6
+					speed = GetEntitySpeed(bike) * 3.6
 
 					if speed >= Config.KMHspeed then
 						can = true
@@ -51,11 +51,11 @@ Citizen.CreateThread(function()
 		end
 
 		Citizen.Wait(sleep)
-    end
+	end
 end)
 
 hasAnimation = function()
-    if not IsEntityPlayingAnim(PlayerPedId(), dict, anim, 3) then
+	if not IsEntityPlayingAnim(PlayerPedId(), dict, anim, 3) then
 		return true
 	end
 end
@@ -66,7 +66,7 @@ doTrick = function()
 		local random = math.random(1, 5)
 		anim = tricks[random]
 
-		while not HasAnimDictLoaded(dict) do 
+		while not HasAnimDictLoaded(dict) do
 			Wait(0)
 			RequestAnimDict(dict)
 		end
@@ -79,6 +79,6 @@ end
 
 RegisterCommand('stunt', function()
 	if can then
-	    doTrick()
+		doTrick()
 	end
 end)
